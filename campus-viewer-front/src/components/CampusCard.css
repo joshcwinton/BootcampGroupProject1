@@ -1,0 +1,12 @@
+.campus-card {
+  padding: 10px;
+  border: 1px solid black;
+  width: 140px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  text-align: left;
+}
+.campus-card ul li {
+  margin: 2px
+}
