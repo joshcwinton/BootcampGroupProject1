@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Campuses.css';
 import CampusCard from './CampusCard.js';
+import {Link} from 'react-router-dom';
 
 class Campuses extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
   render(){
-    console.log(this.props.campusArray);
     return(
       <div>
+        <h1>Campuses</h1>
+        <Link to="/">Home</Link>
+        <div>
         {this.props.campusArray.map(campus => (<CampusCard name={campus.name} image={campus.image} population={campus.population} key={campus.name}/>))}
+        </div>
       </div>
     );
   }
 }
+
 
 Campuses.propTypes = {
   campusArray: PropTypes.arrayOf(PropTypes.object)

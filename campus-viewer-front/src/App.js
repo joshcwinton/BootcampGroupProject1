@@ -1,47 +1,63 @@
-import React from 'react';
-import Campuses from './components/Campuses.js';
-import './App.css';
-// import { createStore } from 'redux';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './components/Home'
+/***/
+import Students from './components/Students'
+import Campuses from './components/Campuses'
+/***/
 
-// const store = createStore(campuses
-//   window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//   window.__REDUX_DEVTOOLS_EXTENSION__());
-
-let MyCampusArray = [
+let campusArray=[
   {
     name: "Campus 1",
-    image: "pic1.url",
-    population: 3
+    image: "campus1.jpg",
+    population: 1
   },
   {
     name: "Campus 2",
-    image: "pic2.url",
-    population: 5
-  },{
+    image: "campus2.jpg",
+    population: 2
+  },
+  {
     name: "Campus 3",
-    image: "pic3.url",
-    population: 7
-  }
-]
+    image: "campus3.jpg",
+    population: 2
+  },
 
-function App() {
-  return (
-    <div className="App">
-      <h1 id="title">Campus Listing</h1>
-      <div id="navbar">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Campuses</a></li>
-          <li><a href="#">Students</a></li>
-        </ul>
-      </div>
-      <br />
-      <div id="campuses">
-        <h2 id="campusHeading">All Campuses</h2>
-        <Campuses campusArray={MyCampusArray}/>
-      </div>
-    </div>
-  );
+]
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      students: {
+
+      },
+      campuses: {
+
+      }
+    }
+  }
+
+  render() {
+
+    const HomeComponent = () => (<Home />);
+
+    const StudentsComponent = () => (<Students allStudents/> )
+
+    const CampusesComponent = () => (<Campuses campusArray={campusArray} />)
+
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={HomeComponent}/>
+        [// all students]
+          <Route exact path="/students" component={StudentsComponent}/>
+        [// all campuses]
+          <Route exact path="/campuses" component={CampusesComponent}/>
+        </Switch>
+      </Router>
+      );
+    }
 }
 
 export default App;
