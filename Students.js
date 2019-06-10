@@ -23,6 +23,8 @@ class Students extends Component {
     return(
       <div>
         <h1>Students</h1>
+        <Link to = "/">Back to Home</Link>
+
       <ul>
         {this.state.students.map(
           element => 
