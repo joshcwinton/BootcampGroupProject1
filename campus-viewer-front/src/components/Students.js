@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import './Students.css'
+import {Link} from 'react-router-dom';
+
+
 class Students extends Component {
   constructor(props) {
     super(props);
@@ -7,7 +10,7 @@ class Students extends Component {
   state = {
     students:["Belinda", "Josh", "Stephen"]
   }
- 
+
   /* add code here later
   componentDidMount()
   {
@@ -19,13 +22,14 @@ class Students extends Component {
   }
   */
 
-  render() {   
+  render() {
     return(
       <div>
         <h1>Students</h1>
+        <Link to="/">Home</Link>
       <ul>
         {this.state.students.map(
-          element => 
+          element =>
             <li>Student name: {element}</li>
         )}
       </ul>
