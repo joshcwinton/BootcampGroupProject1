@@ -29,6 +29,7 @@ class NewCampus extends Component {
   handleSubmit = () => {
     axios.post('/newcampus/submit', this.state)
       .then((res) => console.log(res.data))
+      console.log(this.props);
     // window.location.href = "http://localhost:3001/campuses";
   }
 

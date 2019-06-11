@@ -69,17 +69,22 @@ app.get('/data/campuses', function(request, response){
 app.post('/newcampus/submit', function(request, response){
   console.log('Post request for a new campus...');
   campusArray.push(request.body);
-  console.log(campusArray);
   response.send(request.body);
-})
+});
+
+// // finishing up edit card
+// app.post('/campuses/edit/', function(request, response){
+//   console.log('Post request to edit campus: ' + request);
+//   campusArray.push(request.body);
+//   response.send(request.body);
+// });
 
 app.delete('/campuses/delete/:campusname', function(request, response){
   let campus = decodeURI(request.params.campusname);
-  console.log(request);
   console.log('Post request to delete a campus: ' + campus);
   deleteCampus(campus, campusArray);
   response.send(request.body);
-})
+});
 
 app.listen(3000, function() {
 	  console.log('Campus viewer app listening on port 3000!');

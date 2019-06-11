@@ -39,13 +39,11 @@ class EditCampus extends Component {
     return (
       <div>
         <h1>Edit Campus</h1>
-          <div className="nav">
-
-            <Link to="/" className='btn btn-primary'>Home</Link>
-            <Link to="/students">Students</Link>
-            <Link to="/campuses">Campuses</Link>
-
-          </div>
+        <div className="nav">
+          <Link to="/" className='btn btn-primary'>Home</Link>
+          <Link to="/students">Students</Link>
+          <Link to="/campuses">Campuses</Link>
+        </div>
         <form>
             <label>
               Campus Name:
