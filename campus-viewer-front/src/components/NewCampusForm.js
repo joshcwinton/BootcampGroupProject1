@@ -1,30 +1,35 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
-
+import axios from 'axios';
 
 class NewCampus extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          campus_name: ''
-      };
+        name: '',
+        image: '',
+        population: 0
+      }
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
+//
 // set local name of student
   handleChange = (event) => {
     this.setState ({
-      campus_name: event.target.value
+      name: document.getElementById('campus-name-box').value,
+      image: document.getElementById('campus-image-box').value,
+      population: document.getElementById('campus-population-box').value
     })
   }
 
 // update store array of students
   handleSubmit = () => {
-    //this.props.addStudent(this.state.)
+    axios.post('/newcampus/submit', this.state)
+      .then((res) => console.log(res.data))
+    // window.location.href = "http://localhost:3001/campuses";
   }
 
   render() {
@@ -39,13 +44,10 @@ class NewCampus extends Component {
 
           </div>
         <form>
-            <label>
-              Campus Name
-            </label>
-          <br />
-            <input type="text" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <button type="button" onClick={this.handleSubmit}>Add Campus</button>
+          Campus Name: <input type="text" onChange={this.handleChange} value={this.state.name} id="campus-name-box"/><br />
+          Campus Image URL: <input type="text" name="campus_location" onChange={this.handleChange} value={this.state.image} id="campus-image-box"/><br />
+          Campus Population: <input type="text" name="campus_population" onChange={this.handleChange} value={this.state.population} id="campus-population-box" /><br />
+          <button type="button" onClick={this.handleSubmit}>Add Campus</button>
         </form>
       </div>
     );

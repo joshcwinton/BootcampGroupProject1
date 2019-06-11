@@ -18,13 +18,7 @@ class Campuses extends Component {
 
         <Link to="/newcampus">
            <button type="button">
-             Add Student
-           </button>
-         </Link>
-
-        <Link to="/editcampus">
-           <button type="button">
-             Edit Student
+             Add Campus
            </button>
          </Link>
 

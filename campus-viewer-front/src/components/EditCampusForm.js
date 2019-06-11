@@ -38,7 +38,7 @@ class EditCampus extends Component {
   render() {
     return (
       <div>
-        <header>Edit Campus</header>
+        <h1>Edit Campus</h1>
           <div className="nav">
 
             <Link to="/" className='btn btn-primary'>Home</Link>
