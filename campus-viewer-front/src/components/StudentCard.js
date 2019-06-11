@@ -6,6 +6,7 @@ class StudentCard extends Component {
   render(){
     return(
       <div className="campus-card">
+        <img className="image" src={this.props.image} alt=""/>
         <ul>
           <li>Name: {this.props.name}</li>
           <li>ID: {this.props.id}</li>
@@ -17,6 +18,7 @@ class StudentCard extends Component {
 
 StudentCard.propTypes = {
   name: PropTypes.string,
+  image: PropTypes.string,
   id: PropTypes.number,
 }
 
