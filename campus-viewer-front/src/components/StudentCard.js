@@ -8,8 +8,8 @@ class StudentCard extends Component {
       <div className="campus-card">
         <img className="image" src={this.props.image} alt=""/>
         <ul>
-          <li>Name: {this.props.name}</li>
-          <li>ID: {this.props.id}</li>
+          <li key={this.props.name}>Name: {this.props.name}</li>
+          <li key={this.props.name}>ID: {this.props.id}</li>
         </ul>
       </div>
     );
