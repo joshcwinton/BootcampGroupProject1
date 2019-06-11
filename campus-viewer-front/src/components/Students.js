@@ -1,41 +1,25 @@
-import React, {Component} from 'react';
-import './Students.css'
-import {Link} from 'react-router-dom';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import StudentCard from './StudentCard.js';
+import './Students.css';
+import { Link } from 'react-router-dom';
 
 class Students extends Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    students:["Belinda", "Josh", "Stephen"]
-  }
-
-  /* add code here later
-  componentDidMount()
-  {
-    // dummy array for now
-    let arr = ["Belinda", "Josh", "Stephen"];
-    this.setState = {
-        students: arr
-    }
-  }
-  */
-
   render() {
     return(
       <div>
         <h1>Students</h1>
         <Link to="/">Home</Link>
-      <ul>
-        {this.state.students.map(
-          element =>
-            <li>Student name: {element}</li>
-        )}
-      </ul>
+        <div>
+          {this.props.studentsArray.map(student => (<StudentCard name={student.name} id={student.id}/>))}
+        </div>
       </div>
     );
   }
+}
+
+Students.propTypes = {
+  studentsArray: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Students;
