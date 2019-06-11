@@ -8,47 +8,55 @@ import NewStudent from './components/NewStudentForm'
 import NewCampus from './components/NewCampusForm'
 import EditStudent from './components/EditStudentForm'
 import EditCampus from './components/EditCampusForm'
+import axios from 'axios';
 /***/
 
-let campusArray=[
-  {
-    name: "Campus 1",
-    image: "campus1.jpg",
-    population: 1
-  },
-  {
-    name: "Campus 2",
-    image: "campus2.jpg",
-    population: 2
-  },
-  {
-    name: "Campus 3",
-    image: "campus3.jpg",
-    population: 2
-  },
 
-]
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      students: {
+      students: [{
 
-      },
-      campuses: {
+      }],
+      campuses: [
+          {}
+      ]
+    };
 
-      }
-    }
+    this.getCampusArray = this.getCampusArray.bind(this);
   }
 
+  componentDidMount(){
+    this.getCampusArray();
+    this.getStudentArray();
+  }
+
+  getCampusArray(){
+    axios.get('/data/campuses')
+      .then((res) => {
+        return res.data;
+      })
+      .then((res) => {
+        this.setState((state, props) => {return {campuses: res}});
+      })
+  };
+
+  getStudentArray(){
+    axios.get('/data/students')
+      .then((res) => {
+        return res.data;
+      })
+      .then((res) => {
+        this.setState((state, props) => {return {students: res}});
+      })
+  };
+
   render() {
-
     const HomeComponent = () => (<Home />);
-
-    const StudentsComponent = () => (<Students allStudents/> )
-
-    const CampusesComponent = () => (<Campuses campusArray={campusArray} />)
+    const StudentsComponent = () => (<Students studentsArray={this.state.students}/> );
+    const CampusesComponent = () => (<Campuses campusArray={this.state.campuses} />);
 
     const NewStudentComponent = () => (<NewStudent newStudent/> )
 
