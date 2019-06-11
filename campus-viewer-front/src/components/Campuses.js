@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Campuses.css';
-import CampusCard from './CampusCard.js';
 import {Link} from 'react-router-dom';
+/***/
+import CampusCard from './CampusCard.js';
+/***/
+
+
 
 class Campuses extends Component {
   render(){
@@ -13,6 +17,19 @@ class Campuses extends Component {
         <div>
           {this.props.campusArray.map(campus => (<CampusCard name={campus.name} image={campus.image} population={campus.population} key={campus.name}/>))}
         </div>
+
+        <Link to="/campuses/newcampus">
+          <button type="button">
+            Add Campus
+          </button>
+        </Link>
+
+        <Link to="/campuses/editcampus">
+          <button type="button">
+            Edit Campus
+          </button>
+        </Link>
+
       </div>
     );
   }

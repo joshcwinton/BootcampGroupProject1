@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './Students.css'
 import {Link} from 'react-router-dom';
-
+/***/
+/***/
 
 class Students extends Component {
   constructor(props) {
@@ -33,6 +34,19 @@ class Students extends Component {
             <li>Student name: {element}</li>
         )}
       </ul>
+
+        <Link to="/newstudent">
+          <button type="button">
+            Add Student
+          </button>
+        </Link>
+
+        <Link to="/editstudent">
+          <button type="button">
+            Edit Student
+          </button>
+        </Link>
+
       </div>
     );
   }
