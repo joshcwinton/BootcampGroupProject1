@@ -4,6 +4,7 @@ import StudentCard from './StudentCard.js';
 import './Students.css';
 import { Link } from 'react-router-dom';
 
+
 class Students extends Component {
   render() {
     return(
@@ -13,6 +14,19 @@ class Students extends Component {
         <div>
           {this.props.studentsArray.map(student => (<StudentCard name={student.name} id={student.id}/>))}
         </div>
+
+        <Link to="/newstudent">
+           <button type="button">
+             Add Student
+           </button>
+         </Link>
+
+         <Link to="/editstudent">
+             <button type="button">
+               Edit Student
+             </button>
+         </Link>
+
       </div>
     );
   }
