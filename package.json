@@ -4,9 +4,12 @@
   "description": "Group project #1 for CUNY2x Summer Bootcamp 2019",
   "main": "App.js",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {},
   "scripts": {
