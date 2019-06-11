@@ -4,6 +4,7 @@ import './Campuses.css';
 import CampusCard from './CampusCard.js';
 import {Link} from 'react-router-dom';
 
+
 class Campuses extends Component {
   render(){
     return(

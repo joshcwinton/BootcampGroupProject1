@@ -4,6 +4,7 @@ import StudentCard from './StudentCard.js';
 import './Students.css';
 import { Link } from 'react-router-dom';
 
+
 class Students extends Component {
   render() {
     return(
@@ -25,7 +26,7 @@ class Students extends Component {
                Edit Student
              </button>
          </Link>
-         
+
       </div>
     );
   }
