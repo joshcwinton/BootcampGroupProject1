@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Home from './components/Home';
-import Students from './components/Students';
-import Campuses from './components/Campuses';
+import Home from './components/Home'
+import Students from './components/Students'
+import Campuses from './components/Campuses'
+import NewStudent from './components/NewStudentForm'
+import NewCampus from './components/NewCampusForm'
+import EditStudent from './components/EditStudentForm'
+import EditCampus from './components/EditCampusForm'
 import axios from 'axios';
 
 class App extends Component {
@@ -50,6 +54,10 @@ class App extends Component {
     const HomeComponent = () => (<Home />);
     const StudentsComponent = () => (<Students studentsArray={this.state.students}/> );
     const CampusesComponent = () => (<Campuses campusArray={this.state.campuses} />);
+    const NewStudentComponent = () => (<NewStudent newStudent/> )
+    const NewCampusComponent = () => (<NewCampus newCampus/> )
+    const EditStudentComponent = () => (<EditStudent editStudent/> )
+    const EditCampusComponent = () => (<EditCampus editCampus/> )
 
     return (
       <Router>
@@ -59,6 +67,14 @@ class App extends Component {
           <Route exact path="/students" component={StudentsComponent}/>
         [// all campuses]
           <Route exact path="/campuses" component={CampusesComponent}/>
+
+          <Route path="/newstudent" component={NewStudentComponent}/>
+
+          <Route path="/newcampus" component={NewCampusComponent}/>
+
+          <Route path="/editstudent" component={EditStudentComponent}/>
+
+          <Route path="/editcampus" component={EditCampusComponent}/>
         </Switch>
       </Router>
       );

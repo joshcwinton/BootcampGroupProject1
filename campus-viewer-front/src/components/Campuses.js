@@ -13,6 +13,20 @@ class Campuses extends Component {
         <div>
           {this.props.campusArray.map(campus => (<CampusCard name={campus.name} image={campus.image} population={campus.population} key={campus.name}/>))}
         </div>
+
+
+        <Link to="/newcampus">
+           <button type="button">
+             Add Student
+           </button>
+         </Link>
+
+        <Link to="/editcampus">
+           <button type="button">
+             Edit Student
+           </button>
+         </Link>
+
       </div>
     );
   }
