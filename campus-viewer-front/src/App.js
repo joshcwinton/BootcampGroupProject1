@@ -11,7 +11,6 @@ import EditCampus from './components/EditCampusForm'
 import axios from 'axios';
 /***/
 
-
 class App extends Component {
   constructor() {
     super();
