@@ -7,6 +7,8 @@ class NewCampus extends Component {
       super(props);
       this.state = {
         name: '',
+        location: '',
+        description: '',
         image: '',
         population: 0
       }
@@ -16,10 +18,12 @@ class NewCampus extends Component {
     }
 
 //
-// set local name of student
+// set local name of campus
   handleChange = (event) => {
     this.setState ({
       name: document.getElementById('campus-name-box').value,
+      location: document.getElementById('campus-location-box').value,
+      description: document.getElementById('campus-description-box').value,
       image: document.getElementById('campus-image-box').value,
       population: document.getElementById('campus-population-box').value
     })
@@ -27,7 +31,7 @@ class NewCampus extends Component {
 
 // update store array of students
   handleSubmit = () => {
-    axios.post('/newcampus/submit', this.state)
+    axios.post('/campuses', this.state)
       .then((res) => console.log(res.data))
     // window.location.href = "http://localhost:3001/campuses";
   }
@@ -35,17 +39,17 @@ class NewCampus extends Component {
   render() {
     return (
       <div>
-        <header>New Campus Form</header>
-          <div className="nav">
-
-            <Link to="/" className='btn btn-primary'>Home</Link>
-            <Link to="/students">Students</Link>
-            <Link to="/campuses">Campuses</Link>
-
-          </div>
+        <h1>New Campus Form</h1>
+        <div className="nav">
+          <Link to="/" className='btn btn-primary'>Home</Link>
+          <Link to="/students">Students</Link>
+          <Link to="/campuses">Campuses</Link>
+        </div>
         <form>
           Campus Name: <input type="text" onChange={this.handleChange} value={this.state.name} id="campus-name-box"/><br />
-          Campus Image URL: <input type="text" name="campus_location" onChange={this.handleChange} value={this.state.image} id="campus-image-box"/><br />
+          Campus Location: <input type="text" onChange={this.handleChange} value={this.state.location} id="campus-location-box"/><br />
+          Campus Description: <input type="text" onChange={this.handleChange} value={this.state.description} id="campus-description-box"/><br />
+          Campus Image URL: <input type="text" name="campus_image" onChange={this.handleChange} value={this.state.image} id="campus-image-box"/><br />
           Campus Population: <input type="text" name="campus_population" onChange={this.handleChange} value={this.state.population} id="campus-population-box" /><br />
           <button type="button" onClick={this.handleSubmit}>Add Campus</button>
         </form>

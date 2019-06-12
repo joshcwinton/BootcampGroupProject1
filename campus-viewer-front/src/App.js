@@ -14,15 +14,12 @@ class App extends Component {
     super();
 
     this.state = {
-      students: [{
-
-      }],
-      campuses: [
-          {}
-      ]
+      students: [{}],
+      campuses: [{}]
     };
 
     this.getCampusArray = this.getCampusArray.bind(this);
+    this.getStudentArray = this.getStudentArray.bind(this);
   }
 
   componentDidMount(){
@@ -31,7 +28,7 @@ class App extends Component {
   }
 
   getCampusArray(){
-    axios.get('/data/campuses')
+    axios.get('/campuses')
       .then((res) => {
         return res.data;
       })
@@ -41,7 +38,7 @@ class App extends Component {
   };
 
   getStudentArray(){
-    axios.get('/data/students')
+    axios.get('/students')
       .then((res) => {
         return res.data;
       })
