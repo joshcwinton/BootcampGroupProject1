@@ -35,7 +35,7 @@ const addStudent = (request, response) => {
       throw error
     }
     console.log(results)
-    response.status(201).send(`User added with ID (This doesn't work properly): ${}`) // 
+    response.status(201).send(`User added with ID (This doesn't work properly):`)
   })
 }
 //
