@@ -16,12 +16,12 @@ class StudentCard extends Component {
       <div className="campus-card">
         <img className="image" src={this.props.image} alt=""/>
         <ul>
-          <li key={this.props.name}>Name: {this.props.name}</li>
-          <li key={this.props.name}>GPA: {this.props.gpa}</li>
-          <li key={this.props.name}>Campus: {this.props.campus}</li>
+          <li key="name">Name: {this.props.name}</li>
+          <li key="gpa">GPA: {this.props.gpa}</li>
+          <li key="campus">Campus: {this.props.campus}</li>
         </ul>
         <div className="card-bar">
-          <Link to="/editstudent">edit</Link>
+          <Link to={`/editstudent/${this.props.id}`}>edit</Link>
           <button type="button" onClick={this.handleDelete}>delete</button>
         </div>
       </div>

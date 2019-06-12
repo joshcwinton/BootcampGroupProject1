@@ -16,7 +16,7 @@ class CampusCard extends Component {
       <div className="campus-card">
         <img src={this.props.image} alt="" className="image" />
         <ul>
-          <li key="name">Name: {this.props.name}</li>
+          <Link to="/campuses/">{this.props.name}</Link>
           <li key="location">Location: {this.props.location}</li>
           <li key="population">Students: {this.props.population}</li>
           <li key="description">Description: {this.props.description}</li>

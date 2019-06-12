@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 
 
@@ -39,6 +39,10 @@ class EditStudent extends Component {
     //this.props.addStudent(this.state.)
   }
 
+  componentDidMount = () => {
+    console.log("hey", this)
+  }
+
   render() {
     return (
       <div>
@@ -74,4 +78,4 @@ class EditStudent extends Component {
   }
 }
 
-export default EditStudent;
+export default withRouter(EditStudent);

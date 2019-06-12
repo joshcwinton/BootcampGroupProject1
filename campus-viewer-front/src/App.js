@@ -69,9 +69,9 @@ class App extends Component {
 
           <Route path="/newcampus" component={NewCampusComponent}/>
 
-          <Route path="/editstudent" component={EditStudentComponent}/>
+          <Route path="/editstudent/:id" component={EditStudentComponent}/>
 
-          <Route path="/editcampus" component={EditCampusComponent}/>
+          <Route path="/editcampus/:id" component={EditCampusComponent}/>
         </Switch>
       </Router>
       );
