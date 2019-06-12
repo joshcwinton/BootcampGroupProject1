@@ -6,19 +6,20 @@ import axios from 'axios';
 
 class CampusCard extends Component {
   handleDelete = () => {
-    axios.delete('/campuses/delete/'+this.props.name)
+    console.log(this.props.name);
+    axios.delete('/campuses/'+this.props.name)
       .then((res) => console.log(res.data))
-    // window.location.href = "http://localhost:3001/campuses";
   }
 
   render(){
     return(
       <div className="campus-card">
-        <img src="" alt="" className="image" />
+        <img src={this.props.image} alt="" className="image" />
         <ul>
-          <li>Name: {this.props.name}</li>
-          <li>Image: {this.props.image}</li>
-          <li>Students: {this.props.population}</li>
+          <Link to="/campuses/">{this.props.name}</Link>
+          <li key="location">Location: {this.props.location}</li>
+          <li key="population">Students: {this.props.population}</li>
+          <li key="description">Description: {this.props.description}</li>
         </ul>
         <div className="card-bar">
           <Link to="/editcampus">edit</Link>
@@ -31,7 +32,9 @@ class CampusCard extends Component {
 
 CampusCard.propTypes = {
   name: PropTypes.string,
+  location: PropTypes.string,
   image: PropTypes.string,
+  description: PropTypes.string,
   population: PropTypes.number
 }
 

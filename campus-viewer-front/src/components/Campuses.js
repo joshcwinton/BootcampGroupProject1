@@ -12,7 +12,7 @@ class Campuses extends Component {
         <h1>Campuses</h1>
         <Link to="/">Home</Link>
         <div>
-          {this.props.campusArray.map(campus => (<CampusCard name={campus.name} image={campus.image} population={campus.population} key={campus.name}/>))}
+          {this.props.campusArray.map((campus, index) => (<CampusCard name={campus.name} image={campus.image} location={campus.location} description={campus.description} population={campus.population} key={index}/>))}
         </div>
 
 

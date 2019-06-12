@@ -12,19 +12,13 @@ class Students extends Component {
         <h1>Students</h1>
         <Link to="/">Home</Link>
         <div>
-          {this.props.studentsArray.map(student => (<StudentCard name={student.name} id={student.id}/>))}
+          {this.props.studentsArray.map((student, index) => (<StudentCard name={student.name} id={student.id} gpa={student.gpa} image={student.image} campus={student.campus} key={index}/>))}
         </div>
 
         <Link to="/newstudent">
            <button type="button">
              Add Student
            </button>
-         </Link>
-
-         <Link to="/editstudent">
-             <button type="button">
-               Edit Student
-             </button>
          </Link>
 
       </div>
