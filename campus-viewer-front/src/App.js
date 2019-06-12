@@ -8,6 +8,7 @@ import NewCampus from './components/NewCampusForm'
 import EditStudent from './components/EditStudentForm'
 import EditCampus from './components/EditCampusForm'
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class App extends Component {
   constructor() {
@@ -80,5 +81,7 @@ class App extends Component {
       );
     }
 }
+
+
 
 export default App;
