@@ -16,9 +16,20 @@ const getStudents = (request, response) => {
   })
 }
 
-const getStudentByName = (request, response) => {
-  const name = decodeURI(request.params.name)
-  pool.query('SELECT * FROM students WHERE name = $1', [name], (error, results) => {
+const getStudentById = (request, response) => {
+  const id = parseInt(request.params.id)
+  pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+
+const getCampusById = (request, response) => {
+  const id = parseInt(request.params.id)
+  pool.query('SELECT * FROM campuses WHERE id = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
@@ -47,16 +58,6 @@ const getCampuses = (request, response) => {
   })
 }
 
-const getCampusByName = (request, response) => {
-  const name = decodeURI(request.params.name)
-  pool.query('SELECT * FROM campuses WHERE name = $1', [name], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
-
 const addCampus = (request, response) => {
   const {name, location, image, description, population } = request.body
   console.log(request.body)
@@ -70,10 +71,10 @@ const addCampus = (request, response) => {
 }
 
 const updateCampus = (request, response) => {
-  const name = decodeURI(request.params.name)
-  console.log(name)
-  const { location, image, description, population } = request.body
-  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4 WHERE name = $5', [location, image, description, population, name], (error, results) => {
+  const id = parseInt(request.params.id)
+  console.log(id)
+  const { location, image, description, population, name } = request.body
+  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4 name = $5 WHERE id = $6', [location, image, description, population, name, id], (error, results) => {
     if (error) {
       throw error
     }
@@ -82,14 +83,14 @@ const updateCampus = (request, response) => {
 }
 
 const updateStudent = (request, response) => {
-  const name = decodeURI(request.params.name)
-  console.log(name)
-  const { gpa, image, campus } = request.body
-  pool.query('UPDATE students SET gpa = $1, image = $2, campus = $3 WHERE name = $4', [gpa, image, campus, name], (error, results) => {
+  const id = parseInt(request.params.id)
+  console.log(id)
+  const { gpa, image, campus, name } = request.body
+  pool.query('UPDATE students SET gpa = $1, image = $2, campus = $3, name = $4 WHERE id = $5', [gpa, image, campus, name, id], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`Student modified with NAME: ${name}`)
+    response.status(200).send(`Student modified with ID: ${id}`)
   })
 }
 
@@ -117,9 +118,9 @@ const deleteCampus = (request, response) => {
 
 module.exports = {
   getStudents,
-  getStudentByName,
+  getStudentById,
   getCampuses,
-  getCampusByName,
+  getCampusById,
   addStudent,
   addCampus,
   updateCampus,

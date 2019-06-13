@@ -1,15 +1,23 @@
+// EditStudentForm.js
+// Page for editing student info
+// Reached from Students.js
+
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-
+import axios from 'axios';
 
 
 class EditStudent extends Component {
+  // loads state with only id from navigation path
+  // data is immediately populated when component loads
   constructor(props) {
       super(props);
       this.state = {
-          student_name: '',
-          student_gpa: 0,
-          student_url: ''
+          id: this.props.match.params.id,
+          name: null,
+          gpa: null,
+          image: null,
+          campus: null,
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -17,61 +25,43 @@ class EditStudent extends Component {
     }
 
 
-// set local name of student
+  // Set local name of student when text inside box is changed
   handleChange = (event) => {
-    /*
-    let NAME = event.target.name
-    let VALUE = event.target.value
-    [name]: value
-
-    if([name] == 'student_gpa')
-      {
-        Number.(event.target.value)
-    }
-    */
     this.setState ({
-      student_name: event.target.value
+      id: this.props.match.params.id,
+      name: document.getElementById('student-name-box').value,
+      gpa: document.getElementById('student-gpa-box').value,
+      image: document.getElementById('student-url-box').value,
+      campus: document.getElementById('student-campus-box').value,
     })
+    console.log(this.state)
   }
 
-// update store array of students
+  // Update database with new data from this.state
   handleSubmit = () => {
-    //this.props.addStudent(this.state.)
+    axios.put('/students/'+this.props.match.params.id, this.state)
+      .then((res) => console.log(res.data))
   }
 
-  componentDidMount = () => {
-    console.log("hey", this)
+  // Gets fresh data from database
+  componentDidMount(){
+    axios.get('/students/'+this.props.match.params.id)
+      .then((res) => this.setState(res.data[0]));
   }
 
   render() {
     return (
       <div>
-        <header>Edit Student</header>
-          <div className="nav">
-
-
-            <Link to="/" className='btn btn-primary'>Home</Link>
-            <Link to="/students">Students</Link>
-            <Link to="/campuses">Campuses</Link>
-
-          </div>
+        <h1>Edit Student</h1>
+        <div className="nav">
+          <Link to="/students">Back</Link>
+        </div>
         <form>
-          <label>
-            Student Name:
-          </label>
-            <input type="text" name="student_name" onChange={this.handleChange} value={this.state.value} />
-          <br />
-          <label>
-            GPA:
-          </label>
-            <input type="text" name="student_gpa" onChange={this.handleChange} value={this.state.value} />
-          <br />
-          <label>
-            Student URL:
-          </label>
-            <input type="text" name="student_url" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <button type="button" onClick={this.handleSubmit}>Save Changes</button>
+          Student Name:<input type="text" id="student-name-box" onChange={this.handleChange} value={this.state.name} /><br />
+          GPA:<input type="text" id="student-gpa-box" onChange={this.handleChange} value={this.state.gpa} /><br />
+          Campus:<input type="text" id="student-campus-box" onChange={this.handleChange} value={this.state.campus} /><br />
+          Student Image URL:<input type="text" id="student-url-box" onChange={this.handleChange} value={this.state.image} /><br />
+          <button type="button" onClick={this.handleSubmit}>Save Changes</button>
         </form>
       </div>
     );
