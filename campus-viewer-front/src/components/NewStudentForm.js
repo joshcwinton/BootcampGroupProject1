@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-
+import {connect} from 'react-redux';
+import {addStudentsThunk} from '../store.js';
 
 class NewStudent extends Component {
   constructor(props) {
@@ -30,8 +31,11 @@ class NewStudent extends Component {
 
 // update store array of students
   handleSubmit = () => {
+    this.props.addStudent(this.state);
+    /*
     axios.post('/students', this.state)
       .then((res) => console.log(res.data))
+    */
   }
 
   render() {
@@ -55,4 +59,18 @@ class NewStudent extends Component {
   }
 }
 
-export default NewStudent;
+// Map state to props;
+
+function mapState(props) {
+  return {
+      
+  }
+}
+
+// Map dispatch to props;
+function mapDispatch(dispatch) {
+  return {
+    addStudent: (student) => dispatch(addStudentsThunk(student))
+  }
+}
+export default connect(/*mapState*/null, mapDispatch)(NewStudent);
