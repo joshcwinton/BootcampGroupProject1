@@ -5,19 +5,19 @@ import './CampusCard.css';
 import axios from 'axios';
 
 class CampusCard extends Component {
+  // Called when delete button is clicked, sends HTTP delete to backend
   handleDelete = () => {
-    console.log(this.props.name);
-    axios.delete('/campuses/'+this.props.name)
+    console.log("Deleting campus with id: " + this.props.id);
+    axios.delete('/campuses/'+this.props.id)
       .then((res) => console.log(res.data))
   }
 
   render(){
-    console.log(this.props.id)
     return(
       <div className="campus-card">
         <img src={this.props.image} alt="" className="image" />
         <ul>
-          <Link to="/campuses/">{this.props.name}</Link>
+          <Link to={`/campuses/${this.props.id}`}>{this.props.name}</Link>
           <li key="location">Location: {this.props.location}</li>
           <li key="population">Students: {this.props.population}</li>
           <li key="description">Description: {this.props.description}</li>

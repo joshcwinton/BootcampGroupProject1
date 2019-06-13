@@ -10,16 +10,15 @@ class NewCampus extends Component {
         location: '',
         description: '',
         image: '',
-        population: 0
+        population: 0,
       }
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-//
-// set local name of campus
-  handleChange = (event) => {
+  // Set local state each time text is changed
+  handleChange = () => {
     this.setState ({
       name: document.getElementById('campus-name-box').value,
       location: document.getElementById('campus-location-box').value,
@@ -29,11 +28,10 @@ class NewCampus extends Component {
     })
   }
 
-// update store array of students
+  // Post data from state to database
   handleSubmit = () => {
     axios.post('/campuses', this.state)
       .then((res) => console.log(res.data))
-    // window.location.href = "http://localhost:3001/campuses";
   }
 
   render() {

@@ -5,9 +5,10 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class StudentCard extends Component {
+  // Called when delete button is clicked, sends HTTP delete to backend
   handleDelete = () => {
-    console.log(this.props.name);
-    axios.delete('/students/'+this.props.name)
+    console.log(`Deleting student named ${this.props.name}.`);
+    axios.delete('/students/'+this.props.id)
       .then((res) => console.log(res.data))
   }
 
@@ -16,7 +17,7 @@ class StudentCard extends Component {
       <div className="campus-card">
         <img className="image" src={this.props.image} alt=""/>
         <ul>
-          <li key="name">Name: {this.props.name}</li>
+          <Link to={`/students/${this.props.id}`}> {this.props.name}</Link>
           <li key="gpa">GPA: {this.props.gpa}</li>
           <li key="campus">Campus: {this.props.campus}</li>
         </ul>
