@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import StudentCard from './StudentCard.js';
 import './Students.css';
 import { Link } from 'react-router-dom';
-
+import {connect} from 'react-redux';
+import {viewStudentsThunk} from '../store.js';
 
 class Students extends Component {
+  componentDidMount(){
+    // call viewStudents here
+    this.props.viewStudents();
+  }
   render() {
     return(
       <div>
@@ -30,4 +35,18 @@ Students.propTypes = {
   studentsArray: PropTypes.arrayOf(PropTypes.object)
 }
 
-export default Students;
+// Map state to props;
+function mapState(props) {
+  return {
+  
+  }
+}
+
+// Map dispatch to props;
+function mapDispatch(dispatch) {
+  return {
+    viewStudents: () => dispatch(viewStudentsThunk())
+  }
+}
+export default connect(mapState, mapDispatch)(Students);
+
