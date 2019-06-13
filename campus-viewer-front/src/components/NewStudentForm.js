@@ -8,7 +8,7 @@ class NewStudent extends Component {
       super(props);
       this.state = {
           name: '',
-          gpa: null,
+          gpa: undefined,
           image: '',
           campus: '',
       };
@@ -17,8 +17,7 @@ class NewStudent extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-// set local name of student
+  // Set state with data from boxes every time something is changed
   handleChange = (event) => {
     this.setState ({
       name: document.getElementById('student-name-box').value,
@@ -28,7 +27,7 @@ class NewStudent extends Component {
     })
   }
 
-// update store array of students
+  // post state to database when submit button is clicked
   handleSubmit = () => {
     axios.post('/students', this.state)
       .then((res) => console.log(res.data))

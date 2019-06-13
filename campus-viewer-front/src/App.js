@@ -27,8 +27,10 @@ class App extends Component {
     this.getStudentArray();
   }
 
+  // Fetch data from database
   getCampusArray(){
-    axios.get('/campuses')
+    console.log("Fetching campuses from backend.")
+      axios.get('/campuses')
       .then((res) => {
         return res.data;
       })
@@ -37,7 +39,9 @@ class App extends Component {
       })
   };
 
+  // Fetch data from database
   getStudentArray(){
+    console.log("Fetching students from database.")
     axios.get('/students')
       .then((res) => {
         return res.data;
@@ -64,18 +68,14 @@ class App extends Component {
           <Route exact path="/students" component={StudentsComponent}/>
         [// all campuses]
           <Route exact path="/campuses" component={CampusesComponent}/>
-
           <Route path="/newstudent" component={NewStudentComponent}/>
-
           <Route path="/newcampus" component={NewCampusComponent}/>
-
           <Route path="/editstudent/:id" component={EditStudentComponent}/>
-
           <Route path="/editcampus/:id" component={EditCampusComponent}/>
         </Switch>
       </Router>
-      );
-    }
+    );
+  }
 }
 
 export default App;

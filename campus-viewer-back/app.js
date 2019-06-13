@@ -27,8 +27,8 @@ app.put('/students/:id', queries.updateStudent)
 app.put('/campuses/:id', queries.updateCampus)
 
 // Delete campuses and students
-app.delete('/students/:name', queries.deleteStudent)
-app.delete('/campuses/:name', queries.deleteCampus)
+app.delete('/students/:id', queries.deleteStudent)
+app.delete('/campuses/:id', queries.deleteCampus)
 
 app.listen(3000, function() {
 	  console.log('Campus viewer app listening on port 3000!')
