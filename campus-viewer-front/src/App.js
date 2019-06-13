@@ -7,6 +7,7 @@ import NewStudent from './components/NewStudentForm'
 import NewCampus from './components/NewCampusForm'
 import EditStudent from './components/EditStudentForm'
 import EditCampus from './components/EditCampusForm'
+import StudentSingleView from './components/StudentSingleView.js'
 import axios from 'axios';
 
 class App extends Component {
@@ -64,14 +65,17 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={HomeComponent}/>
-        [// all students]
+          [// all students]
           <Route exact path="/students" component={StudentsComponent}/>
-        [// all campuses]
+          [// all campuses]
           <Route exact path="/campuses" component={CampusesComponent}/>
           <Route path="/newstudent" component={NewStudentComponent}/>
           <Route path="/newcampus" component={NewCampusComponent}/>
           <Route path="/editstudent/:id" component={EditStudentComponent}/>
           <Route path="/editcampus/:id" component={EditCampusComponent}/>
+          <Route path="/students/:id" component={StudentSingleView}/>
+          {// <Route path="/campuses/:id" component={CampusSingleView}/>}
+        }
         </Switch>
       </Router>
     );

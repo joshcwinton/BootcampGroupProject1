@@ -17,6 +17,16 @@ const getStudents = (request, response) => {
   })
 }
 
+const getCampuses = (request, response) => {
+  console.log("Received request for campuses from frontend.");
+  pool.query('SELECT * FROM campuses ORDER BY name ASC', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
 const getStudentById = (request, response) => {
   const id = parseInt(request.params.id)
   console.log("Received request for student with id " + id + " from backend.");
@@ -27,7 +37,6 @@ const getStudentById = (request, response) => {
     response.status(200).json(results.rows)
   })
 }
-
 
 const getCampusById = (request, response) => {
   const id = parseInt(request.params.id)
@@ -51,16 +60,6 @@ const addStudent = (request, response) => {
   })
 }
 
-const getCampuses = (request, response) => {
-  console.log("Received request for campuses from frontend.");
-  pool.query('SELECT * FROM campuses ORDER BY name ASC', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
-
 const addCampus = (request, response) => {
   const {name, location, image, description, population } = request.body
   console.log("Received request to add campus.")
@@ -73,18 +72,6 @@ const addCampus = (request, response) => {
   })
 }
 
-const updateCampus = (request, response) => {
-  const id = parseInt(request.params.id)
-  console.log("Receieved request for update campus with id: " + id)
-  const { location, image, description, population, name } = request.body
-  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4, name = $5 WHERE id = $6', [location, image, description, population, name, id], (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).send(`Campus modified with NAME: ${name}`)
-  })
-}
-
 const updateStudent = (request, response) => {
   const id = parseInt(request.params.id)
   console.log("Receieved request for update campus with id: " + id)
@@ -94,6 +81,18 @@ const updateStudent = (request, response) => {
       throw error
     }
     response.status(200).send(`Student modified with ID: ${id}`)
+  })
+}
+
+const updateCampus = (request, response) => {
+  const id = parseInt(request.params.id)
+  console.log("Receieved request for update campus with id: " + id)
+  const { location, image, description, population, name } = request.body
+  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4, name = $5 WHERE id = $6', [location, image, description, population, name, id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(`Campus modified with NAME: ${name}`)
   })
 }
 
