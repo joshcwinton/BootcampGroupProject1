@@ -74,7 +74,7 @@ const updateCampus = (request, response) => {
   const id = parseInt(request.params.id)
   console.log(id)
   const { location, image, description, population, name } = request.body
-  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4 name = $5 WHERE id = $6', [location, image, description, population, name, id], (error, results) => {
+  pool.query('UPDATE campuses SET location = $1, image = $2, description = $3, population = $4, name = $5 WHERE id = $6', [location, image, description, population, name, id], (error, results) => {
     if (error) {
       throw error
     }

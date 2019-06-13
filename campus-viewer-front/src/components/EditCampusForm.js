@@ -1,16 +1,23 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// EditCampusForm.js
+// Component for editing campus info
+// Reached from Campuses.js
 
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import axios from 'axios';
 
 
 class EditCampus extends Component {
+  // loads state with only id from navigation path
+  // data is immediately populated when component loads
   constructor(props) {
       super(props);
       this.state = {
-          campus_name: '',
-          campus_location: 0,
-          campus_image_url: '',
-          campus_description: ''
+          id: this.props.match.params.id,
+          name: null,
+          location: null,
+          image: null,
+          description: null,
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -18,21 +25,29 @@ class EditCampus extends Component {
     }
 
 
-// set local name of student
-  handleChange = (event) => {
-    /*
-    let NAME = event.target.name
-    let VALUE = event.target.value
-    [name]: value
-    */
+// Set local state of campus when text inside box is changed
+  handleChange = () => {
     this.setState ({
-      student_name: event.target.value
+      id: this.props.match.params.id,
+      name: document.getElementById('campus-name-box').value,
+      location: document.getElementById('campus-location-box').value,
+      image: document.getElementById('campus-url-box').value,
+      description: document.getElementById('campus-description-box').value
     })
+    console.log(this.state)
   }
 
-// update store array of students
+// Update database with new data from this.state
   handleSubmit = () => {
-    //this.props.addStudent(this.state.)
+    axios.put('/campuses/'+this.props.match.params.id, this.state)
+      .then((res) => console.log(res.data))
+  }
+
+  // Gets fresh data from database
+  componentDidMount(){
+    axios.get('/campuses/'+this.props.match.params.id)
+    // .then((res) => console.log("res", res.data[0]));
+      .then((res) => this.setState(res.data[0]));
   }
 
   render() {
@@ -40,38 +55,18 @@ class EditCampus extends Component {
       <div>
         <h1>Edit Campus</h1>
           <div className="nav">
-
-            <Link to="/" className='btn btn-primary'>Home</Link>
-            <Link to="/students">Students</Link>
-            <Link to="/campuses">Campuses</Link>
-
+            <Link to="/">Back</Link>
           </div>
         <form>
-            <label>
-              Campus Name:
-            </label>
-              <input type="text" name="campus_name" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <label>
-              Campus Location:
-            </label>
-              <input type="text" name="campus_location" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <label>
-              Campus Image URL:
-            </label>
-              <input type="text" name="campus_image_url" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <label>
-              Campus Description:
-            </label>
-              <input type="text" name="campus_description" onChange={this.handleChange} value={this.state.value} />
-          <br />
-            <button type="button" onClick={this.handleSubmit}>Save Changes</button>
+          Campus Name:<input type="text" id="campus-name-box" onChange={this.handleChange} value={this.state.name} /><br />
+          Campus Location:<input type="text" id="campus-location-box" onChange={this.handleChange} value={this.state.location} /><br />
+          Campus Image URL:<input type="text" id="campus-url-box" onChange={this.handleChange} value={this.state.image} /><br />
+          Campus Description:<input type="text" id="campus-description-box" onChange={this.handleChange} value={this.state.description} /><br />
+          <button type="button" onClick={this.handleSubmit}>Save Changes</button>
         </form>
       </div>
     );
   }
 }
 
-export default EditCampus;
+export default withRouter(EditCampus);

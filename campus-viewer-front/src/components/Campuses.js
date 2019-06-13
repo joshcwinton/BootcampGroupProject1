@@ -7,12 +7,13 @@ import {Link} from 'react-router-dom';
 
 class Campuses extends Component {
   render(){
+    console.log(this.props.campusArray)
     return(
       <div>
         <h1>Campuses</h1>
         <Link to="/">Home</Link>
         <div>
-          {this.props.campusArray.map((campus, index) => (<CampusCard name={campus.name} image={campus.image} location={campus.location} description={campus.description} population={campus.population} key={index}/>))}
+          {this.props.campusArray.map((campus, index) => (<CampusCard name={campus.name} id={campus.id} image={campus.image} location={campus.location} description={campus.description} population={campus.population} key={index}/>))}
         </div>
 
 

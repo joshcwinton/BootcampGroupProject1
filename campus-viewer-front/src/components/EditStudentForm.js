@@ -1,5 +1,5 @@
 // EditStudentForm.js
-// Page for editing student info
+// Component for editing student info
 // Reached from Students.js
 
 import React, {Component} from 'react';
@@ -25,8 +25,8 @@ class EditStudent extends Component {
     }
 
 
-  // Set local name of student when text inside box is changed
-  handleChange = (event) => {
+  // Set local state of student when text inside box is changed
+  handleChange = () => {
     this.setState ({
       id: this.props.match.params.id,
       name: document.getElementById('student-name-box').value,
@@ -34,7 +34,6 @@ class EditStudent extends Component {
       image: document.getElementById('student-url-box').value,
       campus: document.getElementById('student-campus-box').value,
     })
-    console.log(this.state)
   }
 
   // Update database with new data from this.state
