@@ -12,19 +12,19 @@ app.use(
   })
 )
 
-// Get campuses and students (all or by name)
+// Get campuses and students (all or by id)
 app.get('/students', queries.getStudents)
-app.get('/students/:name', queries.getStudentByName)
+app.get('/students/:id', queries.getStudentById)
 app.get('/campuses', queries.getCampuses)
-app.get('/campuses/:name', queries.getCampusByName)
+app.get('/campuses/:id', queries.getCampusById)
 
 // Add new campuses and students
 app.post('/students', queries.addStudent)
 app.post('/campuses', queries.addCampus)
 
 // Update campuses and students
-app.put('/students/:name', queries.updateStudent)
-app.put('/campuses/:name', queries.updateCampus)
+app.put('/students/:id', queries.updateStudent)
+app.put('/campuses/:id', queries.updateCampus)
 
 // Delete campuses and students
 app.delete('/students/:name', queries.deleteStudent)

@@ -12,6 +12,7 @@ class CampusCard extends Component {
   }
 
   render(){
+    console.log(this.props.id)
     return(
       <div className="campus-card">
         <img src={this.props.image} alt="" className="image" />
@@ -22,7 +23,7 @@ class CampusCard extends Component {
           <li key="description">Description: {this.props.description}</li>
         </ul>
         <div className="card-bar">
-          <Link to="/editcampus">edit</Link>
+          <Link to={`/editcampus/${this.props.id}`}>edit</Link>
           <button type="button" onClick={this.handleDelete}>delete</button>
         </div>
       </div>
@@ -31,6 +32,7 @@ class CampusCard extends Component {
 }
 
 CampusCard.propTypes = {
+  id: PropTypes.number,
   name: PropTypes.string,
   location: PropTypes.string,
   image: PropTypes.string,
