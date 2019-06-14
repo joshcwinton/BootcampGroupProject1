@@ -7,6 +7,8 @@ import NewStudent from './components/NewStudentForm'
 import NewCampus from './components/NewCampusForm'
 import EditStudent from './components/EditStudentForm'
 import EditCampus from './components/EditCampusForm'
+import AllCampuses from './components/AllCampuses'
+import SingleCampus from './components/SingleCampus'
 import axios from 'axios';
 
 class App extends Component {
@@ -55,6 +57,8 @@ class App extends Component {
     const NewCampusComponent = () => (<NewCampus newCampus/> )
     const EditStudentComponent = () => (<EditStudent editStudent/> )
     const EditCampusComponent = () => (<EditCampus editCampus/> )
+    const AllCampusesComponent = () => (<AllCampuses campusView/>)
+    const SingleCampusComponent = () => (<SingleCampus campusView/>)
 
     return (
       <Router>
@@ -71,7 +75,9 @@ class App extends Component {
 
           <Route path="/editstudent/:id" component={EditStudentComponent}/>
 
-          <Route path="/editcampus/:id" component={EditCampusComponent}/>
+          <Route path="/allcampuses" component={AllCampusesComponent}/>
+
+          <Route path="/campuses/:id" component={SingleCampusComponent}/>
         </Switch>
       </Router>
       );

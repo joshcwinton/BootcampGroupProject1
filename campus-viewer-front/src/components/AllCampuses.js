@@ -1,34 +1,32 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Campuses.css';
-import CampusCard from './CampusCard.js';
-import {Link} from 'react-router-dom';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import CampusCard from './CampusCard';
 import { connect } from 'react-redux';
 import { fetchAllCampusesThunk } from '../reducers/index';
 
-class Campuses extends Component {
+
+class AllCampuses extends Component {
+
+
   componentDidMount() {
     this.props.fetchAllCampuses();
   }
 
   render(){
      let result = this.props.allCampuses.map((obj) =>
-        <CampusCard id={obj.id} name={obj.name} />);
+        <CampusCard name={obj.name}/>);
 
     return (
       <div>
-        <h1>View Campuses</h1>
+        <header>View Campuses</header>
         <Link to="/">Home</Link>
 
         {result}
-
-        <Link to="/newcampus">
-        <button type="button">Add Campus</button>
-      </Link>
       </div>
     );
   }
 }
+
 
 // maps state to var
 const mapState = (state) => {
@@ -44,4 +42,4 @@ const mapDispatch = (dispatch) => {
 };
 
 
-export default connect(mapState,mapDispatch)(Campuses);
+export default connect(mapState,mapDispatch)(AllCampuses);

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { addCampusThunk } from '../reducers/index';
 
 class NewCampus extends Component {
   constructor(props) {
@@ -29,10 +31,12 @@ class NewCampus extends Component {
     })
   }
 
+// submits axios call add campus using this.state as object to add to redux store
 // update store array of students
   handleSubmit = () => {
-    axios.post('/campuses', this.state)
-      .then((res) => console.log(res.data))
+    this.props.addCampus(this.state)
+  //  axios.post('/campuses', this.state)
+  //    .then((res) => console.log(res.data))
     // window.location.href = "http://localhost:3001/campuses";
   }
 
@@ -58,4 +62,10 @@ class NewCampus extends Component {
   }
 }
 
-export default NewCampus;
+const mapDispatch = (dispatch) => {
+  return {
+    addCampus:(campus) => dispatch(addCampusThunk(campus))
+  }
+};
+
+export default connect (null, mapDispatch)(NewCampus);
